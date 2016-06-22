@@ -1,0 +1,25 @@
+{
+  "name": "simple-reddit",
+  "version": "1.0.0",
+  "description": "A simplest reddit like website",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "keywords": ["node", "express"],
+  "author": "David Guan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "graphql": "^0.6.0",
+    "superagent": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-eslint": "^6.0.5",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^2.13.1",
+    "nodemon": "^1.9.2"
+  }
+}
