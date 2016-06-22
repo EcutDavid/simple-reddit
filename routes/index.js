@@ -10,8 +10,27 @@ router.get('/', function (req, res) {
     res.render('index', { user : req.user })
 })
 
-router.get('/register', function(req, res) {
-    res.render('register', { })
+router.get('/register', function(req, res, next) {
+  Account.register(new Account({ username : req.body.username }),
+    req.body.password, function(err) {
+      console.log(err);
+      if (err) {
+        console.log(err);
+        return res.render('register', { error : err.message });
+      } else {
+        console.log('user created');
+      }
+
+      passport.authenticate('local')(req, res, function () {
+        req.session.save(function (err) {
+            if (err) {
+                return next(err)
+            }
+            res.redirect('/')
+        })
+      })
+    }
+  )
 })
 
 router.post('/register', function(req, res) {
