@@ -8,7 +8,6 @@ import passport from 'passport'
 import { Strategy } from 'passport-local'
 
 import routes from './routes/index'
-import users from './routes/users'
 import Account from './models/account'
 
 const app = express()
@@ -32,7 +31,6 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', routes)
-app.use('/users', users)
 
 passport.use(new Strategy(Account.authenticate()))
 passport.serializeUser(Account.serializeUser())
