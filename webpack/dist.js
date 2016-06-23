@@ -8,7 +8,7 @@ let defaultSettings = require('./defaults')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 let config = Object.assign({}, baseConfig, {
-  entry: path.join(__dirname, '../src/client'),
+  entry: path.join(__dirname, '../client/app.js'),
   cache: false,
   devtool: 'null',
   plugins: [
