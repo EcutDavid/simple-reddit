@@ -39,28 +39,28 @@ passport.deserializeUser(Account.deserializeUser())
 mongoose.connect('mongodb://localhost/passport_local_mongoose_express4')
 
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+    var err = new Error('Not Found')
+    err.status = 404
+    next(err)
 })
 
 if (app.get('env') === 'development') {
     app.use(function(err, req, res) {
-        res.status(err.status || 500);
+        res.status(err.status || 500)
         res.render('error', {
             message: err.message,
             error: err
-        });
-    });
+        })
+    })
 }
 
 app.use(function(err, req, res) {
-    res.status(err.status || 500);
+    res.status(err.status || 500)
     res.render('error', {
         message: err.message,
         error: {}
-    });
-});
+    })
+})
 
 app.listen(3000)
 

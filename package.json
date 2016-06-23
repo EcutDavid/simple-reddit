@@ -4,9 +4,13 @@
   "description": "A simplest reddit like website",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --exec babel-node index.js",
+    "test": "mocha --compilers js:babel-core/register tests/userTest.js"
   },
-  "keywords": ["node", "express"],
+  "keywords": [
+    "node",
+    "express"
+  ],
   "author": "David Guan",
   "license": "ISC",
   "dependencies": {
@@ -26,10 +30,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
     "babel-eslint": "^6.0.5",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
     "eslint": "^2.13.1",
-    "nodemon": "^1.9.2"
+    "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
+    "should": "^9.0.2"
   }
 }
