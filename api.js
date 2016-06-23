@@ -1,5 +1,4 @@
 import express from 'express'
-import path from 'path'
 import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
@@ -11,10 +10,6 @@ import routes from './routes/index'
 import Account from './models/account'
 
 const app = express()
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade')
 
 //middleware settings
 app.use(logger('dev'))
@@ -28,7 +23,6 @@ app.use(require('express-session')({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', routes)
 

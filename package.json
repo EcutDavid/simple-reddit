@@ -7,7 +7,8 @@
     "start-api": "nodemon --exec babel-node api.js",
     "test": "mocha --compilers js:babel-core/register tests/userTest.js",
     "client-dev": "webpack --env=dev --watch --progress --colors",
-    "client-dist": "webpack --env=dist --progress --colors"
+    "client-dist": "webpack --env=dist --progress --colors",
+    "serve-client": "babel-node client.js"
   },
   "keywords": [
     "node",
