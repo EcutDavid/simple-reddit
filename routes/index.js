@@ -6,45 +6,45 @@ import Account from '../models/account'
 const router = express.Router()
 export default router
 
+//TODO example of provide JSON
 router.get('/', function (req, res) {
-    res.render('index', { user : req.user })
+  res.json({ hello: 'world' })
 })
 
-router.get('/register', function(req, res) {
-    res.render('register', { })
-})
+router.post('/register', function(req, res) {
+  const { username, password } = req.body
+  console.log(`username${username}, password${password}`)
+  Account.register(new Account({ username : username }),
+    password, function(err) {
+      if (err) {
+        return res.json({ error: err.message })
+      }
 
-router.post('/register', function(req, res, next) {
-    Account.register(new Account({ username : req.body.username }),
-      req.body.password, function(err) {
-        if (err) {
-          return res.render('register', { error : err.message })
-        }
-
-        passport.authenticate('local')(req, res, function () {
-            req.session.save(function (err) {
-                if (err) {
-                    return next(err)
-                }
-                res.redirect('/')
-            })
+      passport.authenticate('local')(req, res, function () {
+        req.session.save(function (err) {
+            if (err) {
+                return res.json({ error: err })
+            }
+            return res.json({ username })
         })
-    })
+      })
+  })
 })
 
 router.get('/login', function(req, res) {
-    res.render('login', { user : req.user })
+  res.render('login', { user : req.user })
 })
 
+//What should I send in front-end for passport.authenticate('local')?
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/')
+  res.redirect('/')
 })
 
 router.get('/logout', function(req, res) {
-    req.logout()
-    res.redirect('/')
+  req.logout()
+  res.redirect('/')
 })
 
 router.get('/ping', function(req, res){
-    res.status(200).send('pong!')
+  res.status(200).send('pong!')
 })
