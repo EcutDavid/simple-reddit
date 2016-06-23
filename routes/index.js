@@ -13,6 +13,7 @@ router.get('/', function (req, res) {
 
 router.post('/register', function(req, res) {
   const { username, password } = req.body
+  console.log(`username${username}, password${password}`)
   Account.register(new Account({ username : username }),
     password, function(err) {
       if (err) {

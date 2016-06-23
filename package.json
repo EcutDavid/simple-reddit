@@ -4,7 +4,8 @@
   "description": "A simplest reddit like website",
   "main": "index.js",
   "scripts": {
-    "start-api": "nodemon --exec babel-node api.js",
+    "serve-api": "nodemon --exec babel-node api.js",
+    "start-api": "babel-node api.js",
     "test": "mocha --compilers js:babel-core/register tests/userTest.js",
     "client-dev": "webpack --env=dev --watch --progress --colors",
     "client-dist": "webpack --env=dist --progress --colors",
