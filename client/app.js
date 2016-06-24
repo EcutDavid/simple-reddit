@@ -1,45 +1,26 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
-import request from 'superAgent'
+import { Router, Route, hashHistory } from 'react-router'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Topic from './pages/Topic'
+import Article from './pages/Article'
+import NotFound from './pages/NotFound'
+import Container from './Container'
+
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = { works: undefined }
-  }
-
-  componentDidMount() {
-    request
-      .post('http://localhost:3000/register')
-      .send({ username: 'john don2' ,password: '123123' })
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) {
-          console.error(err)
-          this.setState({ works: false })
-        }
-        this.setState({ works: true })
-      });
-  }
-
   render() {
-    const { works } = this.state
-    let content
-    switch (works) {
-      case true:
-        content = (<h1>End point works</h1>)
-        break
-      case false:
-        content = (<h1>End point broken</h1>)
-        break
-      default:
-        content = (<h1>Application loading</h1>)
-    }
     return (
-      <div>
-        <h1>It works</h1>
-        { content }
-      </div>
+      <Router history={hashHistory}>
+        <Route component={Container} path="/" >
+          <Route component={Login} path="login" />
+          <Route component={Article} path="article/:id" />
+          <Route component={Signup} path="signup" />
+          <Route component={Topic} path="topic/:id" />
+        </Route>
+        <Route component={NotFound} path="*" />
+      </Router>
     )
   }
 }
