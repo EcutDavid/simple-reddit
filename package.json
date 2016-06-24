@@ -9,7 +9,8 @@
     "test": "mocha --compilers js:babel-core/register tests/userTest.js",
     "client-dev": "webpack --env=dev --watch --progress --colors",
     "client-dist": "webpack --env=dist --progress --colors",
-    "serve-client": "babel-node client.js"
+    "serve-client": "babel-node client.js",
+    "start": "concurrently --kill-others \"npm run client-dev\" \"npm run serve-client\""
   },
   "keywords": [
     "node",
