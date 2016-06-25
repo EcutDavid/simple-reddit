@@ -24,6 +24,7 @@
     "debug": "^2.1.1",
     "express": "^4.13.4",
     "express-session": "^1.10.1",
+    "immutable": "^3.8.1",
     "jade": "^1.9.1",
     "mongoose": "^4.4.1",
     "morgan": "^1.5.1",
@@ -32,7 +33,11 @@
     "passport-local-mongoose": "^1.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
     "react-router": "^2.5.1",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
     "superagent": "^2.0.0"
   },
   "devDependencies": {

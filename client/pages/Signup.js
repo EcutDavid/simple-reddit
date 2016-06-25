@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import request from 'superAgent'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-export default class Signup extends Component {
+import { changeLoginState } from 'actions/userActions'
+
+export class Signup extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = { signed: false }
@@ -12,6 +16,7 @@ export default class Signup extends Component {
       usernameInput: { value : username },
       passwordInput: { value : password }
     } = this.refs
+    const { changeLoginState } = this.props
 
     request
       .post('http://localhost:3000/register')
@@ -22,6 +27,7 @@ export default class Signup extends Component {
           console.error(err)
           return
         }
+        changeLoginState(true)
         this.context.router.push('/')
       })
   }
@@ -57,3 +63,11 @@ export default class Signup extends Component {
 Signup.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    changeLoginState
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Signup)
