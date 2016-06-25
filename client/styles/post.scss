@@ -1,0 +1,20 @@
+.Post {
+  border: 1px solid #000;
+  margin: 20px 0;
+  padding: 10px 0;
+  text-align: center;
+
+  .title {
+    margin: 0;
+    font-size: 1.7em;
+  }
+
+  .description {
+    font-size: 0.9em;
+    color: grey;
+  }
+
+  button {
+    margin: 0 10px;
+  }
+}

@@ -12,8 +12,8 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!postcss-loader'
       },
       {
-        test: /\.less/,
-        loader: ExtractTextPlugin.extract('style', ['css', 'less'])
+        test: /\.scss/,
+        loader: 'style-loader!css-loader!sass-loader!postcss-loader'
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|ttf)(\?v=\d+\.\d+\.\d+)?$/,
