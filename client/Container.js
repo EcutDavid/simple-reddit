@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
-
+import Header from './Header'
 
 export default class Container extends Component {
   render() {
     return (
       <div>
-        <nav>
-          <Link to='/login'>login</Link>
-        </nav>
+        <Header />
         { this.props.children }
       </div>
     )

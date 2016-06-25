@@ -7,7 +7,7 @@
     "serve-api": "nodemon --exec babel-node api.js",
     "start-api": "babel-node api.js",
     "test": "mocha --compilers js:babel-core/register tests/userTest.js",
-    "client-dev": "webpack --env=dev --watch --progress --colors",
+    "client-dev": "webpack --env=dev --watch --colors",
     "client-dist": "webpack --env=dist --progress --colors",
     "serve-client": "babel-node client.js",
     "start": "concurrently --kill-others \"npm run client-dev\" \"npm run serve-client\""
@@ -53,6 +53,7 @@
     "mocha": "^2.5.3",
     "node-sass": "^3.8.0",
     "nodemon": "^1.9.2",
+    "postcss-loader": "^0.9.1",
     "sass-loader": "^3.2.1",
     "should": "^9.0.2",
     "style-loader": "^0.13.1",
