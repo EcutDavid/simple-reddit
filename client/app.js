@@ -6,7 +6,7 @@ import Signup from './pages/Signup'
 import Topic from './pages/Topic'
 import Article from './pages/Article'
 import NotFound from './pages/NotFound'
-import Container from './Container'
+import Container from './components/Container'
 
 
 class App extends Component {

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import request from 'superAgent'
 
 export default class Signup extends Component {
-  constructor() {
-    super()
+  constructor(props, context) {
+    super(props, context)
     this.state = { signed: false }
   }
 
@@ -22,20 +22,23 @@ export default class Signup extends Component {
           console.error(err)
           return
         }
-        console.log(res);
-        this.setState({ signed: true })
+        this.context.router.push('/')
       })
   }
 
   render() {
     const { signed } = this.state
+
+
     const content = signed ? (
       <h2>You are a user of simplest reddit now</h2>
     ) : (
       <div>
         <h2>Signup</h2>
-        <input ref='usernameInput' type='text' defaultValue='username'/>
-        <input ref='passwordInput' type='password' />
+        Username: <input ref='usernameInput' type='text' />
+        <br />
+        Password: <input ref='passwordInput' type='password' />
+        <br />
         <button
           onClick={this.submit.bind(this)}
         >
@@ -49,4 +52,8 @@ export default class Signup extends Component {
       </div>
     )
   }
+}
+
+Signup.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
