@@ -4,8 +4,8 @@ import passportLocalMongoose from 'passport-local-mongoose'
 const { Schema } = mongoose
 
 const Account = new Schema({
-    username: String,
-    password: String
+  username: String,
+  password: String
 })
 
 Account.plugin(passportLocalMongoose)

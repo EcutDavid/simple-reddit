@@ -22,13 +22,14 @@ router.post('/register', function(req, res) {
 
       passport.authenticate('local')(req, res, function () {
         req.session.save(function (err) {
-            if (err) {
-                return res.json({ error: err })
-            }
-            return res.json({ username })
+          if (err) {
+            return res.json({ error: err })
+          }
+          return res.json({ username })
         })
       })
-  })
+    }
+  )
 })
 
 router.get('/login', function(req, res) {

@@ -2,7 +2,6 @@
 const path = require('path')
 const srcPath = path.join(__dirname, '/../src')
 const defaultPort = 8080
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 function getDefaultModules() {
   return {
