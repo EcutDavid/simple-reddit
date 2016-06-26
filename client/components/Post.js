@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 
 import 'styles/post.scss'
 
-export default class Container extends Component {
+export default class Post extends Component {
   render() {
-    const { name, description, points, id } = this.props
+    const { name, description, points, id, author } = this.props
     return (
       <div className='Post'>
         <Link to={`article/${id ? id : '0'}`} className='title'>{ name }</Link>
@@ -13,6 +13,7 @@ export default class Container extends Component {
         <p className='points'>{ points }</p>
         <button>upvote</button>
         <button>downvote</button>
+        { author ? <p>{ `Author: ${author}` }</p>: ''}
       </div>
     )
   }

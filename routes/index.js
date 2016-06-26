@@ -16,8 +16,8 @@ router.get('/post', function(req, res) {
 })
 
 router.post('/post', isAuthenticated, function(req, res) {
-  const { description, name, points } = req.body
-  const post = new Post({ description, name, points })
+  const { description, name, points, author, content } = req.body
+  const post = new Post({ author, content, description, name, points })
   Post.find({ name }, (err, posts) => {
     if (err) {
       return res.json(err)
