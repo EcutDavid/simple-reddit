@@ -6,11 +6,6 @@ import Post from '../models/post'
 const router = express.Router()
 export default router
 
-//TODO example of provide JSON
-router.get('/', function (req, res) {
-  res.json({ hello: 'world' })
-})
-
 router.get('/post', function(req, res) {
   Post.find((err, posts) => {
     if (err) {
@@ -45,25 +40,25 @@ router.post('/register', function(req, res) {
     if (err) {
       return res.json({err})
     }
-    console.log(users);
     if (typeof users === 'object' && users.length >= 1) {
       return res.json({err: 'User already exist'})
     }
     const account = new Account({ username, password })
-    account.save(function(err) {
+    account.save(function(err, result) {
         if (err) {
           return res.json({ error: err.message })
         }
-        return res.json({ username })
+        return res.json({ data: account })
       }
     )
   })
 })
 
-router.get('/login', function(req, res) {
-  res.render('login', { user : req.user })
-})
-
-router.post('/login', function(req, res) {
-
+router.post('/login', isAuthenticated, function(req, res) {
+  Account.findOne({ username: req.user.username }, (err, user) => {
+    if (err) {
+      return res.json({err})
+    }
+    return res.json({ data: user })
+  })
 })

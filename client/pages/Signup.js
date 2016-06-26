@@ -27,18 +27,13 @@ export class Signup extends Component {
           console.error(err)
           return
         }
-        changeLoginState(true)
+        changeLoginState(username, password, res.body.data)
         this.context.router.push('/')
       })
   }
 
   render() {
-    const { signed } = this.state
-
-
-    const content = signed ? (
-      <h2>You are a user of simplest reddit now</h2>
-    ) : (
+    return (
       <div>
         <h2>Signup</h2>
         Username: <input ref='usernameInput' type='text' />
@@ -50,11 +45,6 @@ export class Signup extends Component {
         >
           Submit
         </button>
-      </div>
-    )
-    return (
-      <div>
-        { content }
       </div>
     )
   }

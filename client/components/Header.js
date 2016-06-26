@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
+import { userLogout } from 'actions/userActions'
 import 'styles/header.scss'
 
 export class Container extends Component {
+  logout() {
+    const { userLogout } = this.props
+    userLogout()
+  }
+
   render() {
     const { alreadyLogin } = this.props
     return (
@@ -12,7 +19,7 @@ export class Container extends Component {
         <Link to='/'>Home</Link>
         { !alreadyLogin && <Link to='/login'>Login</Link> }
         { !alreadyLogin && <Link to='/signup'>Signup</Link> }
-        { alreadyLogin && <a href='javascript:void(0)'>Logout</a> }
+        { alreadyLogin && <a onClick={this.logout.bind(this)}>Logout</a> }
       </nav>
     )
   }
@@ -24,4 +31,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Container)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    userLogout
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Container)
