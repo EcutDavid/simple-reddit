@@ -1,6 +1,6 @@
 import express from 'express'
 import passport from 'passport'
-import Account from '../models/account'
+import Account, { isAuthenticated } from '../models/account'
 import Post from '../models/post'
 
 const router = express.Router()
@@ -20,7 +20,7 @@ router.get('/post', function(req, res) {
   })
 })
 
-router.post('/post', function(req, res) {
+router.post('/post', isAuthenticated, function(req, res) {
   const { description, name, points } = req.body
   const post = new Post({ description, name, points })
   Post.find({ name }, (err, posts) => {
