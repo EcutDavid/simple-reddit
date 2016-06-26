@@ -35,7 +35,7 @@ passport.use(new Strategy(Account.authenticate()))
 passport.serializeUser(Account.serializeUser())
 passport.deserializeUser(Account.deserializeUser())
 
-mongoose.connect('mongodb://localhost/passport_local_mongoose_express4')
+mongoose.connect('mongodb://localhost/simplest_reddit')
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found')
