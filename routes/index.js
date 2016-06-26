@@ -11,6 +11,15 @@ router.get('/', function (req, res) {
   res.json({ hello: 'world' })
 })
 
+router.get('/post', function(req, res) {
+  Post.find((err, posts) => {
+    if (err) {
+      return res.json(err)
+    }
+    return res.json(posts)
+  })
+})
+
 router.post('/post', function(req, res) {
   const { description, name, points } = req.body
   const post = new Post({ description, name, points })
@@ -32,54 +41,29 @@ router.post('/post', function(req, res) {
 
 router.post('/register', function(req, res) {
   const { username, password } = req.body
-  Account.register(new Account({ username }),
-    password, function(err) {
-      if (err) {
-        return res.json({ error: err.message })
-      }
-
-      passport.authenticate('local')(req, res, function () {
-        req.session.save(function (err) {
-          if (err) {
-            return res.json({ err })
-          }
-          return res.json({ username })
-        })
-      })
+  Account.find({username}, (err, users) => {
+    if (err) {
+      return res.json({err})
     }
-  )
-})
-
-router.post('/register', function(req, res) {
-  const { username, password } = req.body
-  Account.register(new Account({ username : username }),
-    password, function(err) {
-      if (err) {
-        return res.json({ error: err.message })
-      }
-
-      passport.authenticate('local')(req, res, function () {
-        req.session.save(function (err) {
-          if (err) {
-            return res.json({ err })
-          }
-          return res.json({ username })
-        })
-      })
+    console.log(users);
+    if (typeof users === 'object' && users.length >= 1) {
+      return res.json({err: 'User already exist'})
     }
-  )
+    const account = new Account({ username, password })
+    account.save(function(err) {
+        if (err) {
+          return res.json({ error: err.message })
+        }
+        return res.json({ username })
+      }
+    )
+  })
 })
 
 router.get('/login', function(req, res) {
   res.render('login', { user : req.user })
 })
 
-//What should I send in front-end for passport.authenticate('local')?
-router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.redirect('/')
-})
+router.post('/login', function(req, res) {
 
-router.get('/logout', function(req, res) {
-  req.logout()
-  res.redirect('/')
 })

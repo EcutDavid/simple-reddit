@@ -1,4 +1,5 @@
 ### After clone
+Start mongo DB       
 `npm install`
 
 ### Running back-end

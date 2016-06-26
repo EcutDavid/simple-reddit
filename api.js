@@ -4,7 +4,6 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import passport from 'passport'
-import { Strategy } from 'passport-local'
 
 import routes from './routes/index'
 import Account from './models/account'
@@ -30,10 +29,6 @@ app.use(function(req, res, next) {
   next()
 })
 app.use('/', routes)
-
-passport.use(new Strategy(Account.authenticate()))
-passport.serializeUser(Account.serializeUser())
-passport.deserializeUser(Account.deserializeUser())
 
 mongoose.connect('mongodb://localhost/simplest_reddit')
 
