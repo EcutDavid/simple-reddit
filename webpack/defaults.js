@@ -11,8 +11,8 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!postcss-loader'
       },
       {
-        test: /\.scss/,
-        loader: 'style-loader!css-loader!sass-loader!postcss-loader'
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!postcss-loader!sass-loader'
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|ttf)(\?v=\d+\.\d+\.\d+)?$/,
@@ -33,7 +33,7 @@ function getDefaultModules() {
 
 module.exports = {
   srcPath: srcPath,
-  publicPath: './scripts/react/',
+  publicPath: './',
   port: defaultPort,
   getDefaultModules: getDefaultModules
 }

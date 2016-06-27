@@ -17,5 +17,11 @@ module.exports = {
       'node_modules'
     ],
     extensions: ['', '.js', '.jsx']
+  },
+  postcss: function () {
+    return [
+      require('precss'),
+      require('autoprefixer')
+    ]
   }
 }

@@ -12,6 +12,9 @@ import FrontPage from './pages/FrontPage'
 import Container from './components/Container'
 import store from 'stores'
 
+import 'font-awesome/css/font-awesome.min.css'
+import 'styles/app.scss'
+
 class App extends Component {
   render() {
     return (
