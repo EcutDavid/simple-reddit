@@ -1,8 +1,7 @@
 import request from 'superagent'
 
-export const UPDATA_POST = 'CHANGE_LOGIN_STATE'
+export const UPDATA_POST = 'UPDATA_POST'
 import { apiServiceUrl } from 'config/api'
-
 
 export function getPosts() {
   return dispatch => {

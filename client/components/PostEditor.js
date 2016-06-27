@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import request from 'superagent'
 
 import 'styles/postEditor.scss'
+import * as postActions from 'actions/postActions'
 import { apiServiceUrl } from 'config/api'
 
 export class PostEditor extends Component {
@@ -12,7 +14,7 @@ export class PostEditor extends Component {
       descriptionInput: { value : description },
       contentInput: { value : content }
     } = this.refs
-    const { username, password } = this.props
+    const { username, password, getPosts } = this.props
     request
       .post(`${apiServiceUrl}post`)
       .auth(username ,password)
@@ -29,7 +31,7 @@ export class PostEditor extends Component {
           console.error(err)
           return
         }
-        console.log(res);
+        getPosts()
       })
   }
 
@@ -75,4 +77,12 @@ function mapStateToProps(state) {
     password: state.user.get('password')
   }
 }
-export default connect(mapStateToProps)(PostEditor)
+
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getPosts: postActions.getPosts
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostEditor)
