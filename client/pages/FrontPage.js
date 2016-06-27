@@ -3,6 +3,7 @@ import request from 'superAgent'
 
 import Post from 'components/Post'
 import PostEditor from 'components/PostEditor'
+import { apiServiceUrl } from 'config/api'
 
 export default class FrontPage extends Component {
   constructor() {
@@ -14,7 +15,7 @@ export default class FrontPage extends Component {
 
   componentWillMount() {
     request
-      .get('http://localhost:3000/post')
+      .get(`${apiServiceUrl}post`)
       .end((err, res) => {
         if (err) {
           console.error(err)

@@ -4,6 +4,7 @@
   "description": "A simplest reddit like website",
   "main": "index.js",
   "scripts": {
+    "deploy": "sudo npm run client-dist && pm2 start client.js -n \"simplest-reddit-clent\" && pm2 start server.js -n \"simplest-reddit-api\"",
     "serve-api": "nodemon --exec babel-node api.js",
     "start-api": "babel-node api.js",
     "test": "mocha --compilers js:babel-core/register tests/userTest.js",
@@ -48,6 +49,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "eslint": "^2.13.1",

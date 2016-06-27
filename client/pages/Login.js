@@ -4,6 +4,7 @@ import request from 'superAgent'
 import { connect } from 'react-redux'
 
 import * as userActions from 'actions/userActions'
+import { apiServiceUrl } from 'config/api'
 
 export class Login extends Component {
   submit() {
@@ -14,7 +15,7 @@ export class Login extends Component {
     const { changeLoginState } = this.props
 
     request
-      .post('http://localhost:3000/login')
+      .post(`${apiServiceUrl}login`)
       .auth(username ,password)
       .set('Accept', 'application/json')
       .end((err, res) => {

@@ -1,7 +1,7 @@
-import express from 'express'
-import path from 'path'
+var express = require('express')
+var path = require('path')
 
-const app = express()
+var app = express()
 
 app.use(express.static(path.join(__dirname, 'public')))
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import request from 'superAgent'
 
 import 'styles/postEditor.scss'
+import { apiServiceUrl } from 'config/api'
 
 export class PostEditor extends Component {
   submit() {
@@ -13,7 +14,7 @@ export class PostEditor extends Component {
     } = this.refs
     const { username, password } = this.props
     request
-      .post('http://localhost:3000/post')
+      .post(`${apiServiceUrl}post`)
       .auth(username ,password)
       .send({
         name: postName,

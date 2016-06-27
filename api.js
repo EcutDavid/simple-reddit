@@ -6,7 +6,6 @@ import mongoose from 'mongoose'
 import passport from 'passport'
 
 import routes from './routes/index'
-import Account from './models/account'
 
 const app = express()
 

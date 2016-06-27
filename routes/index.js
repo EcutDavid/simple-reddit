@@ -1,5 +1,4 @@
 import express from 'express'
-import passport from 'passport'
 import Account, { isAuthenticated } from '../models/account'
 import Post from '../models/post'
 
@@ -44,7 +43,7 @@ router.post('/register', function(req, res) {
       return res.json({err: 'User already exist'})
     }
     const account = new Account({ username, password })
-    account.save(function(err, result) {
+    account.save(function(err) {
         if (err) {
           return res.json({ error: err.message })
         }
