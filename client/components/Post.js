@@ -11,8 +11,8 @@ export default class Post extends Component {
         <Link to={`article/${id ? id : '0'}`} className='title'>{ name }</Link>
         <p className='description'>{ description }</p>
         <p className='points'>{ points }</p>
-        <button>upvote</button>
-        <button>downvote</button>
+        <button className='vote-button fa fa-arrow-up'/>
+        <button className='vote-button fa fa-arrow-down'/>
         { author ? <p>{ `Author: ${author}` }</p>: ''}
       </div>
     )

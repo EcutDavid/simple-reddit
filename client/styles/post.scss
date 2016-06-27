@@ -1,3 +1,5 @@
+@import 'node_modules/foundation-sites/scss/foundation';
+
 .Post {
   border: 1px solid #000;
   margin: 20px 0;
@@ -16,5 +18,11 @@
 
   button {
     margin: 0 10px;
+  }
+
+  .vote-button {
+    color: #1585cf;
+    font-size: 1.5em;
+    padding-right: 5px;
   }
 }

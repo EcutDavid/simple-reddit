@@ -32,9 +32,9 @@ export class Login extends Component {
   render() {
     return (
       <div>
-        <input ref='usernameInput' type='text' defaultValue='username'/>
-        <input ref='passwordInput' type='password' />
-        <button onClick={this.submit.bind(this)} >
+        <input ref='usernameInput' type='text' placeholder='username'/>
+        <input ref='passwordInput' type='password' placeholder='password'/>
+        <button className='button' onClick={this.submit.bind(this)} >
           Submit
         </button>
       </div>

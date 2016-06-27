@@ -15,11 +15,13 @@ export class Container extends Component {
   render() {
     const { alreadyLogin } = this.props
     return (
-      <nav className='Header'>
-        <Link to='/'>Home</Link>
-        { !alreadyLogin && <Link to='/login'>Login</Link> }
-        { !alreadyLogin && <Link to='/signup'>Signup</Link> }
-        { alreadyLogin && <a onClick={this.logout.bind(this)}>Logout</a> }
+      <nav className='Header row small-11'>
+        <div>
+          <Link to='/'>Home</Link>
+          { !alreadyLogin && <Link className='right-float' to='/login'>Login</Link> }
+          { !alreadyLogin && <Link className='right-float' to='/signup'>Signup</Link> }
+          { alreadyLogin && <a className='right-float' onClick={this.logout.bind(this)}>Logout</a> }
+        </div>
       </nav>
     )
   }

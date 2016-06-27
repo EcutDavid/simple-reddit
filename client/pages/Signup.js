@@ -37,11 +37,10 @@ export class Signup extends Component {
     return (
       <div>
         <h2>Signup</h2>
-        Username: <input ref='usernameInput' type='text' />
-        <br />
-        Password: <input ref='passwordInput' type='password' />
-        <br />
+        <input ref='usernameInput' type='text' placeholder='username'/>
+        <input ref='passwordInput' type='password' placeholder='password' />
         <button
+          className='button'
           onClick={this.submit.bind(this)}
         >
           Submit

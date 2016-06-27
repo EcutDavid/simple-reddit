@@ -6,7 +6,9 @@ export default class Container extends Component {
     return (
       <div>
         <Header />
-        { this.props.children }
+        <div className='row small-11'>
+          { this.props.children }
+        </div>
       </div>
     )
   }

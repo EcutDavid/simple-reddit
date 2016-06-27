@@ -43,21 +43,21 @@ export class PostEditor extends Component {
           <input
             ref='postNameInput'
             type='text'
-            defaultValue='postName'
+            placeholder='postName'
           />
           <input
             className='description'
             ref='descriptionInput'
             type='text'
-            defaultValue='description'
+            placeholder='description'
           />
           <input
             className='content'
             ref='contentInput'
             type='text'
-            defaultValue='content'
+            placeholder='content'
           />
-          <button onClick={this.submit.bind(this)} >
+          <button className='button' onClick={this.submit.bind(this)} >
             Submit
           </button>
         </div>
