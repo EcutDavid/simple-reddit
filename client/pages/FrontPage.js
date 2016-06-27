@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import request from 'superagent'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import Post from 'components/Post'
 import PostEditor from 'components/PostEditor'
-import { apiServiceUrl } from 'config/api'
+import * as postActions from 'actions/postActions'
 
-export default class FrontPage extends Component {
+export class FrontPage extends Component {
   constructor() {
     super()
     this.state = {
@@ -14,19 +15,12 @@ export default class FrontPage extends Component {
   }
 
   componentWillMount() {
-    request
-      .get(`${apiServiceUrl}post`)
-      .end((err, res) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-        this.setState({ posts: res.body })
-      })
+    const { getPosts } = this.props
+    getPosts()
   }
 
   render() {
-    const { posts } = this.state
+    const { posts } = this.props
     return (
       <div>
         <h2>Home page</h2>
@@ -47,3 +41,18 @@ export default class FrontPage extends Component {
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    posts: state.post.get('posts')
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getPosts: postActions.getPosts
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FrontPage)
