@@ -15,9 +15,6 @@ export class PostEditor extends Component {
       contentInput: { value : content },
       indicatorText
     } = this.refs
-    console.log(postName);
-    console.log(description);
-    console.log(content);
     if (!postName) {
       indicatorText.innerHTML = 'Please provide post name'
       return

@@ -1,19 +1,51 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import request from 'superagent'
 
+import { apiServiceUrl } from 'config/api'
 import 'styles/post.scss'
 
 export default class Post extends Component {
+  constructor() {
+    super()
+    this.state = { points: 0}
+  }
+
+  componentWillMount() {
+    this.setState({ points: this.props.points })
+  }
+
+  modifyPoints(isUpvote) {
+    const { username, password, id } = this.props
+
+    request
+      .put(`${apiServiceUrl}post`)
+      .auth(username ,password)
+      .send({ id, pointInc: isUpvote ? 1 : -1 })
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+        if (!res.body || res.body.err) {
+          return
+        }
+        this.setState({ points: res.body.points })
+      })
+  }
+
   render() {
-    const { alreadyLogin, name, description, points, id, author } = this.props
+    const { alreadyLogin, name, description, id, author } = this.props
+    const { points } = this.state
     return (
       <div className='Post'>
         <Link to={`article/${id ? id : '0'}`} className='title'>{ name }</Link>
         <p className='description'>{ description }</p>
         <p className='points'>{ points }</p>
-        { alreadyLogin && <button className='vote-button fa fa-arrow-up'/> }
-        { alreadyLogin && <button className='vote-button fa fa-arrow-down'/> }
+        { alreadyLogin && <button onClick={this.modifyPoints.bind(this, true)} className='vote-button fa fa-arrow-up'/> }
+        { alreadyLogin && <button onClick={this.modifyPoints.bind(this, false)} className='vote-button fa fa-arrow-down'/> }
         { author ? <p>{ `Author: ${author}` }</p>: ''}
       </div>
     )
@@ -22,7 +54,9 @@ export default class Post extends Component {
 
 function mapStateToProps(state) {
   return {
-    alreadyLogin: state.user.get('alreadyLogin')
+    alreadyLogin: state.user.get('alreadyLogin'),
+    username: state.user.get('username'),
+    password: state.user.get('password')
   }
 }
 

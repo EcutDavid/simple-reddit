@@ -14,6 +14,20 @@ router.get('/post', function(req, res) {
   })
 })
 
+router.put('/post', isAuthenticated, function(req, res) {
+  const { id, pointInc } = req.body
+  Post.findOne({ _id: id }, (err, post) => {
+    if (err) {
+      return res.json(err)
+    }
+    if (post && pointInc) {
+      post.points = Number.parseInt(post.points) + Number.parseInt(pointInc)
+      post.save()
+    }
+    return res.json(post)
+  })
+})
+
 router.post('/post', isAuthenticated, function(req, res) {
   const { description, name, points, author, content } = req.body
   const post = new Post({ author, content, description, name, points })
