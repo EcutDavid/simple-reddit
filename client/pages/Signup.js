@@ -15,17 +15,28 @@ export class Signup extends Component {
   submit() {
     const {
       usernameInput: { value : username },
-      passwordInput: { value : password }
+      passwordInput: { value : password },
+      indicatorText
     } = this.refs
     const { changeLoginState } = this.props
 
+    if (!username || !password) {
+      indicatorText.innerHTML = 'Please provide username and password.'
+      return
+    }
+    indicatorText.innerHTML = 'Request sending.'
     request
       .post(`${apiServiceUrl}register`)
       .send({ username ,password })
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {
+          indicatorText.innerHTML = 'Sorry, some thing broken in server, please contact David Guan(DavidGuanDev@Gmail.com)'
           console.error(err)
+          return
+        }
+        if (res.body.err) {
+          indicatorText.innerHTML = res.body.err
           return
         }
         changeLoginState(username, password, res.body.data)
@@ -45,6 +56,7 @@ export class Signup extends Component {
         >
           Submit
         </button>
+        <p ref='indicatorText'></p>
       </div>
     )
   }

@@ -10,16 +10,23 @@ export class Login extends Component {
   submit() {
     const {
       usernameInput: { value : username },
-      passwordInput: { value : password }
+      passwordInput: { value : password },
+      indicatorText
     } = this.refs
     const { changeLoginState } = this.props
 
+    if (!username || !password) {
+      indicatorText.innerHTML = 'Please provide username and password.'
+      return
+    }
+    indicatorText.innerHTML = 'Request sending.'
     request
       .post(`${apiServiceUrl}login`)
       .auth(username ,password)
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {
+          indicatorText.innerHTML = 'Username or password incorrect'
           console.error(err)
           return
         }
@@ -37,6 +44,7 @@ export class Login extends Component {
         <button className='button' onClick={this.submit.bind(this)} >
           Submit
         </button>
+        <p ref='indicatorText'></p>
       </div>
     )
   }

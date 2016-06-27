@@ -12,8 +12,25 @@ export class PostEditor extends Component {
     const {
       postNameInput: { value : postName },
       descriptionInput: { value : description },
-      contentInput: { value : content }
+      contentInput: { value : content },
+      indicatorText
     } = this.refs
+    console.log(postName);
+    console.log(description);
+    console.log(content);
+    if (!postName) {
+      indicatorText.innerHTML = 'Please provide post name'
+      return
+    }
+    if (!description) {
+      indicatorText.innerHTML = 'Please provide description'
+      return
+    }
+    if (!content) {
+      indicatorText.innerHTML = 'Please provide content'
+      return
+    }
+    indicatorText.innerHTML = 'Request sending.'
     const { username, password, getPosts } = this.props
     request
       .post(`${apiServiceUrl}post`)
@@ -28,9 +45,15 @@ export class PostEditor extends Component {
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {
+          indicatorText.innerHTML = 'Sorry, some thing broken in server, please contact David Guan(DavidGuanDev@Gmail.com)'
           console.error(err)
           return
         }
+        if (res.body.err) {
+          indicatorText.innerHTML = res.body.err
+          return
+        }
+        indicatorText.innerHTML = 'Thanks for your post!!'
         getPosts()
       })
   }
@@ -60,6 +83,7 @@ export class PostEditor extends Component {
           <button className='button' onClick={this.submit.bind(this)} >
             Submit
           </button>
+          <p ref='indicatorText'></p>
         </div>
       )
     } else {
