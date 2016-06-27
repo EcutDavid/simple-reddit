@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import request from 'superAgent'
+import request from 'superagent'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import request from 'superAgent'
+import request from 'superagent'
 
 import 'styles/postEditor.scss'
 import { apiServiceUrl } from 'config/api'

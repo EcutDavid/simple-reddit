@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import request from 'superAgent'
+import request from 'superagent'
 
 import Post from 'components/Post'
 import PostEditor from 'components/PostEditor'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import request from 'superAgent'
+import request from 'superagent'
 import { connect } from 'react-redux'
 
 import * as userActions from 'actions/userActions'
