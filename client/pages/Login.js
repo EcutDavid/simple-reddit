@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import request from 'superAgent'
 import { connect } from 'react-redux'
 
-import { changeLoginState } from 'actions/userActions'
+import * as userActions from 'actions/userActions'
 
 export class Login extends Component {
   submit() {
@@ -48,7 +48,7 @@ Login.contextTypes = {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeLoginState
+    changeLoginState: userActions.changeLoginState
   }, dispatch)
 }
 

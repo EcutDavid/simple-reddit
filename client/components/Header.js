@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { userLogout } from 'actions/userActions'
+import * as userActions from 'actions/userActions'
 import 'styles/header.scss'
 
 export class Container extends Component {
@@ -33,7 +33,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    userLogout
+    userLogout: userActions.userLogout
   }, dispatch)
 }
 
