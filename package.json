@@ -4,7 +4,8 @@
   "description": "A simplest reddit like website",
   "main": "index.js",
   "scripts": {
-    "deploy": "sudo npm run client-dist && pm2 start client.js -n \"simplest-reddit-clent\" && pm2 start server.js -n \"simplest-reddit-api\"",
+    "clean": "rimraf public/* && cp client/index.html public/index.html",
+    "deploy": "npm run clean && sudo npm run client-dist && pm2 start client.js -n \"simplest-reddit-clent\" && pm2 start server.js -n \"simplest-reddit-api\"",
     "serve-api": "nodemon --exec babel-node api.js",
     "start-api": "babel-node api.js",
     "test": "mocha --compilers js:babel-core/register tests/userTest.js",
@@ -67,6 +68,7 @@
     "postcss": "^5.0.21",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",
+    "rimraf": "^2.5.2",
     "sass-loader": "^3.2.1",
     "should": "^9.0.2",
     "style-loader": "^0.13.1",
