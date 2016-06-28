@@ -21,7 +21,6 @@ export class FrontPage extends Component {
 
   render() {
     const { posts } = this.props
-    console.log(posts);
     return (
       <div>
         <h2>Home page</h2>

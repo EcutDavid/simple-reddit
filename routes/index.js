@@ -1,9 +1,13 @@
 import express from 'express'
+
 import Account, { isAuthenticated } from '../models/account'
 import Post from '../models/post'
+import Comment from '../models/comment'
 
 const router = express.Router()
 export default router
+
+//posts
 
 router.get('/post', function(req, res) {
   Post.find((err, posts) => {
@@ -47,6 +51,8 @@ router.post('/post', isAuthenticated, function(req, res) {
   })
 })
 
+// accounts
+
 router.post('/register', function(req, res) {
   const { username, password } = req.body
   Account.find({username}, (err, users) => {
@@ -73,5 +79,38 @@ router.post('/login', isAuthenticated, function(req, res) {
       return res.json({err})
     }
     return res.json({ data: user })
+  })
+})
+
+// comment
+
+router.post('/comment', isAuthenticated, function(req, res) {
+  const { content, postId, author } = req.body
+  const comment = new Comment({ content, postId, author })
+  comment.save(err => {
+    if (err) {
+      return res.json({ err: err.message })
+    }
+    return res.json({ data: comment })
+  })
+})
+
+// article
+
+//TODO: change this method to get
+router.post('/article', function(req, res) {
+  const { id } = req.body
+  Post.findOne({ _id: id }, (err, post) => {
+    if (err) {
+      return res.json({ err: err.message })
+    }
+    Comment.find({ postId: id }, (err, comments) => {
+      return res.json({ data: {
+        name: post.name,
+        author: post.author,
+        content: post.content,
+        comments
+      }})
+    })
   })
 })

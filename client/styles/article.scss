@@ -1,0 +1,25 @@
+.Article {
+  text-align: center;
+
+  .author {
+    text-align: right;
+  }
+
+  .content {
+    text-align: left;
+    &.post {
+      margin-left: 1.25rem;
+    }
+  }
+
+  .comment-area{
+    margin-top: 30px;
+
+    .comment {
+      border-top: 1px solid #000;
+    }
+    li {
+      list-style: none;
+    }
+  }
+}
