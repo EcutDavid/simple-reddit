@@ -12,7 +12,7 @@
     "client-dev": "webpack --env=dev --watch --colors",
     "client-dist": "webpack --env=dist --progress --colors",
     "serve-client": "babel-node client.js",
-    "start": "concurrently --kill-others \"npm run client-dev\" \"npm run serve-client\""
+    "start": "npm run clean && concurrently --kill-others \"npm run client-dev\" \"npm run serve-client\""
   },
   "keywords": [
     "node",

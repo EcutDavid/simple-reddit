@@ -11,7 +11,8 @@ export class Login extends Component {
     const {
       usernameInput: { value : username },
       passwordInput: { value : password },
-      indicatorText
+      indicatorText,
+      submitBtn
     } = this.refs
     const { changeLoginState } = this.props
 
@@ -19,12 +20,16 @@ export class Login extends Component {
       indicatorText.innerHTML = 'Please provide username and password.'
       return
     }
+
+    submitBtn.disabled = true
     indicatorText.innerHTML = 'Request sending.'
+
     request
       .post(`${apiServiceUrl}login`)
       .auth(username ,password)
       .set('Accept', 'application/json')
       .end((err, res) => {
+        submitBtn.disabled = true
         if (err) {
           indicatorText.innerHTML = 'Username or password incorrect'
           console.error(err)
@@ -41,8 +46,12 @@ export class Login extends Component {
       <div>
         <input ref='usernameInput' type='text' placeholder='username'/>
         <input ref='passwordInput' type='password' placeholder='password'/>
-        <button className='button' onClick={this.submit.bind(this)} >
-          Submit
+        <button
+          className='button'
+          onClick={this.submit.bind(this)}
+          ref='submitBtn'
+        >
+          Log In
         </button>
         <p ref='indicatorText'></p>
       </div>

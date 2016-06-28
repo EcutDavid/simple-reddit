@@ -16,7 +16,8 @@ export class Signup extends Component {
     const {
       usernameInput: { value : username },
       passwordInput: { value : password },
-      indicatorText
+      indicatorText,
+      submitBtn
     } = this.refs
     const { changeLoginState } = this.props
 
@@ -24,12 +25,16 @@ export class Signup extends Component {
       indicatorText.innerHTML = 'Please provide username and password.'
       return
     }
+
+    submitBtn.disabled = true
     indicatorText.innerHTML = 'Request sending.'
+
     request
       .post(`${apiServiceUrl}register`)
       .send({ username ,password })
       .set('Accept', 'application/json')
       .end((err, res) => {
+        submitBtn.disabled = false
         if (err) {
           indicatorText.innerHTML = 'Sorry, some thing broken in server, please contact David Guan(DavidGuanDev@Gmail.com)'
           console.error(err)
@@ -47,14 +52,14 @@ export class Signup extends Component {
   render() {
     return (
       <div>
-        <h2>Signup</h2>
         <input ref='usernameInput' type='text' placeholder='username'/>
         <input ref='passwordInput' type='password' placeholder='password' />
         <button
           className='button'
           onClick={this.submit.bind(this)}
+          ref='submitBtn'
         >
-          Submit
+          Sign Up
         </button>
         <p ref='indicatorText'></p>
       </div>

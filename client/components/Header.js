@@ -17,10 +17,10 @@ export class Container extends Component {
     return (
       <nav className='Header row small-11'>
         <div>
-          <Link to='/'>Home</Link>
-          { !alreadyLogin && <Link className='right-float' to='/login'>Login</Link> }
-          { !alreadyLogin && <Link className='right-float' to='/signup'>Signup</Link> }
-          { alreadyLogin && <a className='right-float' onClick={this.logout.bind(this)}>Logout</a> }
+          <Link to='/' className='float-left'>Home</Link>
+          { !alreadyLogin && <Link className='float-right' to='/login'>Log In</Link> }
+          { !alreadyLogin && <Link className='float-right' to='/signup'>Sign Up</Link> }
+          { alreadyLogin && <a className='float-right' onClick={this.logout.bind(this)}>Log Out</a> }
         </div>
       </nav>
     )

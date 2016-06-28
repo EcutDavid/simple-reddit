@@ -1,9 +1,3 @@
 node_modules
 npm-debug.log
-public/*.js
-public/*.json
-public/*.ttf
-public/*.woff
-public/*.woff2
-public/*.eot
-public/*.svg
+public
