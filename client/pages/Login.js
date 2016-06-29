@@ -29,7 +29,7 @@ export class Login extends Component {
       .auth(username ,password)
       .set('Accept', 'application/json')
       .end((err, res) => {
-        submitBtn.disabled = true
+        submitBtn.disabled = false
         if (err) {
           indicatorText.innerHTML = 'Username or password incorrect'
           console.error(err)
