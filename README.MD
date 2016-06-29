@@ -12,9 +12,6 @@ Visit the demo: [here]()
 *Running back-end*: `npm run start-api`   
 *Running front-end*: `npm start`   
 
-### Bugs to be fixed
-* Deep route not support: [this link](http://139.59.6.112:4000/) works but [this link](http://139.59.6.112:4000/article/5770f420886c20d25038b591) broken. 
-
 ### What's next?
 * Code refactor.
 * Style improvements.
