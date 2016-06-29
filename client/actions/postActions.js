@@ -12,10 +12,13 @@ export function getPosts() {
           console.error(err)
           return
         }
-        return dispatch({
-          type: UPDATA_POST,
-          payload: res.body
-        })
+        const { err: resErr, data } = res.body
+        if (!resErr) {
+          return dispatch({
+            type: UPDATA_POST,
+            payload: data
+          })
+        }
       })
   }
 }

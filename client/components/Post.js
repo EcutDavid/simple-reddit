@@ -29,10 +29,10 @@ export default class Post extends Component {
           console.error(err)
           return
         }
-        if (!res.body || res.body.err) {
-          return
+        const { err: resErr, data } = res.body
+        if (!resErr) {
+          this.setState({ points: data.points })
         }
-        this.setState({ points: res.body.points })
       })
   }
 
