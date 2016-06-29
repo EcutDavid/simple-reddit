@@ -3,10 +3,10 @@ var path = require('path')
 
 var app = express()
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+  response.sendFile(path.resolve(__dirname, '../public', 'index.html'))
 })
 
 app.listen(4000)
