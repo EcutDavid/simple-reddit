@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router history={browserHistory}>
-          <Route component={Container} path="/" >
+          <Route component={Container} path="/(simple-reddit)" >
             <IndexRoute component={FrontPage} />
             <Route component={Login} path="login" />
             <Route component={Article} path="article/:id" />
