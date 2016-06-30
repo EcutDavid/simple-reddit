@@ -147,7 +147,7 @@
 	          { history: _reactRouter.browserHistory },
 	          _react2.default.createElement(
 	            _reactRouter.Route,
-	            { component: _Container2.default, path: '/' },
+	            { component: _Container2.default, path: '/(simple-reddit)' },
 	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _FrontPage2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { component: _Login2.default, path: 'login' }),
 	            _react2.default.createElement(_reactRouter.Route, { component: _Article2.default, path: 'article/:id' }),
