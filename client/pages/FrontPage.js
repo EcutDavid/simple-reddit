@@ -6,7 +6,7 @@ import Post from 'components/Post'
 import PostEditor from 'components/PostEditor'
 import * as postActions from 'actions/postActions'
 
-export class FrontPage extends Component {
+class FrontPage extends Component {
   constructor() {
     super()
     this.state = {

@@ -6,7 +6,7 @@ import request from 'superagent'
 import { apiServiceUrl } from 'config/api'
 import 'styles/post.scss'
 
-export default class Post extends Component {
+class Post extends Component {
   constructor() {
     super()
     this.state = { points: 0}

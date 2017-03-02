@@ -28,7 +28,7 @@
     "express": "^4.13.4",
     "express-session": "^1.10.1",
     "font-awesome": "^4.6.3",
-    "foundation-sites": "^6.2.3",
+    "foundation-sites": "6.2.4",
     "immutable": "^3.8.1",
     "jade": "^1.9.1",
     "mongoose": "^4.4.1",
